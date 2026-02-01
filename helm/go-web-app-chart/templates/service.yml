@@ -10,8 +10,4 @@ spec:
     app: go-web-app
   ports:
   - port: 80
-<<<<<<< HEAD
     targetPort: 8080
-=======
-    targetPort: 8080
->>>>>>> ea73237 (Added Helm Chart)

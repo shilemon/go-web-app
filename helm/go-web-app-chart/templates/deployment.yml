@@ -5,7 +5,7 @@ metadata:
   labels:
     app: go-web-app
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: go-web-app
@@ -16,11 +16,7 @@ spec:
     spec:
       containers:
       - name: go-web-app
-        image: emon110852/go-web-app:v1
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-<<<<<<< HEAD
         - containerPort: 8080
-=======
-        - containerPort: 8080
-        
->>>>>>> ea73237 (Added Helm Chart)
