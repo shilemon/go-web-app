@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
       - name: go-web-app
-        image: emon110852/go-web-app
+        image: emon110852/go-web-app:v1
         ports:
         - containerPort: 8080
-        
