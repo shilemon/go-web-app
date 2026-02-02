@@ -8,7 +8,7 @@ image:
   repository: emon110852/go-web-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "21590450059"
+  tag: "21601721596"
 
 ingress:
   enabled: false
