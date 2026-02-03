@@ -304,19 +304,7 @@ helm install go-web-app ./helm -n production --create-namespace
 # Argo CD will automatically sync and deploy based on Git repository
 ```
 
-## 🌍 Environment Management
 
-This project supports multiple isolated environments:
-
-### Environment Strategy
-
-| **Environment** | **Purpose**                | **Auto-Sync** | **Approval Required** |
-|-----------------|----------------------------|---------------|-----------------------|
-| **Development** | Feature testing            | ✅ Enabled    | ❌ No                 |
-| **QA**          | Quality assurance testing  | ✅ Enabled    | ❌ No                 |
-| **Production**  | Live user-facing deployment| ❌ Disabled   | ✅ Yes                |
-
-### Environment Configuration
 
 Each environment has its own `values.yaml` file:
 
