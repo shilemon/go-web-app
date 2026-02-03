@@ -31,6 +31,10 @@ This is a simple **Go-based HTTP web application** that runs inside a Docker con
 
 The entire deployment lifecycle is automated using **GitHub Actions (CI)** and **Argo CD (CD)** following **GitOps principles**.
 
+## 🏗️ Architecture Diagram
+
+<img width="1530" height="736" alt="diagram-export-2-3-2026-11_34_31-AM" src="https://github.com/user-attachments/assets/37215e22-8801-413c-8a61-49358ce7488c" />
+
 ---
 
 ## 🏗️ Architecture Overview
@@ -166,6 +170,77 @@ This enables **safe promotion** from Dev → QA → Prod.
 │ └── prod/
 └── README.md
 
+
+# Install Argo CD
+
+## Install Argo CD using manifests
+
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+## Access the Argo CD UI (Loadbalancer service) 
+
+```bash
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+## Access the Argo CD UI (Loadbalancer service) -For Windows
+
+```bash
+kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'
+```
+
+## Get the Loadbalancer service IP
+
+```bash
+kubectl get svc argocd-server -n argocd
+```
+
+For EKS prerequisite 
+# prerequisites
+
+kubectl – A command line tool for working with Kubernetes clusters. For more information, see [Installing or updating kubectl]("https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html").
+
+eksctl – A command line tool for working with EKS clusters that automates many individual tasks. For more information, see [Installing or updating]("https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html").
+
+AWS CLI – A command line tool for working with AWS services, including Amazon EKS. For more information, see [Installing, updating, and uninstalling the AWS CLI]("https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html") in the AWS Command Line Interface User Guide. After installing the AWS CLI, we recommend that you also configure it. For more information, see [Quick configuration]("https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config") with aws configure in the AWS Command Line Interface User Guide.
+
+
+# Install EKS
+
+Please follow the prerequisites doc before this.
+
+## Install a EKS cluster with EKSCTL
+
+```
+eksctl create cluster --name demo-cluster --region us-east-1 
+```
+
+## Delete the cluster
+
+```
+eksctl delete cluster --name demo-cluster --region us-east-1
+```
+
+# Install Nginx Ingress Controller on AWS
+
+## Step 1: Deploy the below manifest
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
+```
+
+
+<img width="1915" height="963" alt="Screenshot 2026-02-03 011020" src="https://github.com/user-attachments/assets/c689f8c6-4674-4c4e-9d65-b935b08f8c87" />
+<img width="1919" height="856" alt="Screenshot 2026-02-03 011030" src="https://github.com/user-attachments/assets/d55f59a3-ec12-41c9-bf24-7d1d5ed34efb" />
+<img width="1911" height="895" alt="Screenshot 2026-02-03 011043" src="https://github.com/user-attachments/assets/37170325-212e-4e96-9a6c-a2ef03e7bdb6" />
+
+<img width="1657" height="570" alt="Screenshot 2026-02-03 011133" src="https://github.com/user-attachments/assets/1523cd02-2346-4ed8-bd48-272c1b9c2001" />
+
+<img width="1913" height="974" alt="Screenshot 2026-02-03 011303" src="https://github.com/user-attachments/assets/f0b9d8d1-fa31-4352-a450-5236dae2145b" />
+
+<img width="1918" height="1010" alt="Screenshot 2026-02-03 011339" src="https://github.com/user-attachments/assets/73c5837c-9a76-4039-8370-ee71a2d3cd5d" />
 
 ---
 
